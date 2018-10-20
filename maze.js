@@ -3,12 +3,15 @@ var state;
 var boundaries;
 var touchWall = true;
 var finishGame = true;
+var end;
 
 window.onload = function()
 {
 	boundaries = document.querySelectorAll(".boundary");
 	state = document.getElementbyId("status");
 
+
+	end.onmouseover = congratsMsg;
 	for (var j = 0; j < boundaries.length - 1; j++)
 	{
 		boundaries[j].onmouseover = touchMazeWall;
@@ -27,4 +30,13 @@ function touchMazeWall()
 						}
 					}
 			}
+	}
+
+function congratsMsg()
+	{
+		if (touchWall)
+		{
+			state.innerText = 'You Win! Click the "S" to reset and play again.';
+		}
+		}
 	}

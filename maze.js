@@ -1,17 +1,26 @@
 
 var state;
 var boundaries;
-var touchWall = true;
-var finishGame = true;
+var touchWall = false;
+var finishGame = false;
 var end;
+var start;
+var outsideMaze;
 
 window.onload = function()
 {
+	
+
 	boundaries = document.querySelectorAll(".boundary");
-	state = document.getElementbyId("status");
+	state = document.getElementById("status");
+	end = document.getElementById("end");
+	start = document.getElementById("start");
+	outsideMaze = document.getElementById("maze");
 
 
 	end.onmouseover = congratsMsg;
+	start.onclick = restartGame;
+	outsideMaze.onmouseleave = noCheating;
 
 	for (var j = 0; j < boundaries.length - 1; j++)
 	{
@@ -20,15 +29,16 @@ window.onload = function()
 }
 function touchMazeWall()
 	{
-		if (finishGame)
-			
-				if (touchWall)
+		if (!finishGame)
+			{	
+				if (!touchWall)
 					{
+						touchWall = true;
 						state.innerText = 'You Lose! Click the "S" to start over.';
 
 						for (var x = 0; x < boundaries.length - 1; x++)
 						{
-							boundaries[x].className += "youlose";
+							boundaries[x].className += " youlose";
 						}
 					}
 			}
@@ -36,8 +46,9 @@ function touchMazeWall()
 
 function congratsMsg()
 	{
-		if (touchWall)
+		if (!touchWall)
 		{
+			finishGame = true;
 			state.innerText = 'You Win! Click the "S" to reset and play again.';
 		}
 		
@@ -47,10 +58,20 @@ function restartGame()
 	{
 		finishGame =  false;
 		touchWall = false;
-		state.innerText = 'Hover the cursor over the "S" to begin.';
+		state.innerText = 'Click on the "S" box to begin.';
 
-		for (var x = 0; var x < boundaries.length - 1; x++)
+		for (var x = 0; x < boundaries.length - 1; x++)
 		{
-			boundaries[i].className = "boundary";
+			boundaries[x].className = "boundary";
+		}
+	}
+
+
+
+function noCheating()
+	{
+		if (!finishGame)
+		{
+			touchMazeWalls();
 		}
 	}

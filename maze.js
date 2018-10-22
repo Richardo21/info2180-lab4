@@ -1,4 +1,4 @@
-
+//variables declared globally
 var state;
 var boundaries;
 var touchWall = false;
@@ -10,14 +10,14 @@ var outsideMaze;
 window.onload = function()
 {
 	
-
+//html element being selected for use
 	boundaries = document.querySelectorAll(".boundary");
 	state = document.getElementById("status");
 	end = document.getElementById("end");
 	start = document.getElementById("start");
 	outsideMaze = document.getElementById("maze");
 
-
+//assign function to each event
 	end.onmouseover = congratsMsg;
 	start.onclick = restartGame;
 	outsideMaze.onmouseleave = noCheating;
@@ -27,6 +27,8 @@ window.onload = function()
 		boundaries[j].onmouseover = touchMazeWall;
 	}
 }
+
+//this function checks is the cursor touches the wall
 function touchMazeWall()
 	{
 		if (!finishGame)
@@ -44,6 +46,8 @@ function touchMazeWall()
 			}
 	}
 
+
+//checks if user lost the game and hit boundaries
 function congratsMsg()
 	{
 		if (!touchWall)
@@ -72,6 +76,6 @@ function noCheating()
 	{
 		if (!finishGame)
 		{
-			touchMazeWalls();
+			touchMazeWall();
 		}
 	}

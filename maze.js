@@ -33,7 +33,7 @@ function touchMazeWall()
 	{
 		if (!finishGame)
 			{	
-				if (!touchWall)
+				if (!touchWall) // if the youlose is already applied
 					{
 						touchWall = true;
 						state.innerText = 'You Lose! Click the "S" to start over.';
